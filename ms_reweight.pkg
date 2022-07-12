@@ -1,0 +1,12 @@
+v 1.0
+d 'MS_REWEIGHT': Reweighting-based microsimulation
+d 
+d Reweighting-based microsimulation
+d 
+d Distribution-Date:   20220712
+d License: Academic Free License v3.0
+d 
+F ms_reweight.ado
+F ms_reweight.sthlp
+f Example1.do
+f Example1.dta
