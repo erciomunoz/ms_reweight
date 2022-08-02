@@ -453,9 +453,9 @@ if ("`pid'" == "" & "`industry'"=="") gcollapse (mean) c1f00-c3m70								, by(`
 		
 	noi di "Wentropy for country `country' in year `tyear'"
 	noi di "The constraint matrix is"
+	matrix colnames const`tyear'= constraints
 	matrix list const`tyear'
-	noi di "Total population is `lsumpop`tyear''"
-	noi di "wentropy c1f00-c3m70 industry1_skill1-industry`nindustries'_skill`nskills', old(`iweights') new(`generate') constraints(const`tyear') pop(`lsumpop`tyear'')"		
+	noi di "Total population is `lsumpop`tyear''"	
 		
 if ("`industry'"=="") wentropy c1f00-c3m70							    , old(`iweights') new(newwgt) constraints(const`tyear') pop(`lsumpop`tyear'')
 else 				  wentropy c1f00-c3m70 i1s1-i`nindustries's`nskills', old(`iweights') new(newwgt) constraints(const`tyear') pop(`lsumpop`tyear'')
