@@ -1,4 +1,4 @@
-*! version 1.0   Ercio Munoz 6/23/2022 
+*! version 1.0   Ercio Munoz & Israel Osorio-Rodarte 8/2/2022 
 	
 /* 
 Program to re-weight the population given demographic projections (age, 10-year cohorts & education) and sector shares.
@@ -14,7 +14,7 @@ syntax [anything], AGE(string) EDUcation(string) GENDER(string) HHSIZE(string) H
  */  COUNTRY(string) IYEAR(string) TYEAR(string) Generate(string) MATCH(string) POPDATA(string) /* 
  */  VARIANT(string) /*
  */ [ PID(string) SKILL(string) INDUSTRY(string) INDUSTRYSHARES(string) TARGETS(string) /*
- */ GROWTH(string) LABORINCOME(string) SIMLABORINCOME(string) OMIT ] 
+ */ GROWTH(string) LABORINCOME(string) SIMLABORINCOME(string) FOODPRICES(string) FOODSHARES(string) ] 
 	
 ********************************************************************************
 	** Bringing UN population projections and aggregating cohorts ** 
@@ -45,7 +45,7 @@ quietly	{
 				gen country_merge = "`country'"
 					collapse (sum) y*, by(country_merge)
 					
-					forval p = 1950/2100 {
+					forval p = 2011/2100 {
 						gen double y`p'1 = yf`p' + ym`p'
 					}
 				
@@ -81,14 +81,14 @@ quietly	{
 		levelsof `skill', local(levels)
 	
 		* Verifying that the survey year selected is within range
-		if `iyear' < 1950 | `iyear' > 2100 {
+		if `iyear' < 2011 | `iyear' > 2100 {
 			noi di " "
-			noi di in red "Survey year is out of range (1950-2100)"
+			noi di in red "Survey year is out of range (2011-2100)"
 			exit
 		}		
 	
 		* Verifying that the target year selected is within range
-		if `tyear' < 1950 | `tyear' > 2100 {
+		if `tyear' < 2011 | `tyear' > 2100 {
 			noi di " "
 			noi di in red "Target year is out of range (1950-2100)"
 			exit
@@ -408,8 +408,6 @@ if ("`targets'" != "") mat const`tyear' = `targets'
 	**  Applying the calibration command **
 ********************************************************************************	
 	use `base', clear
-
-if "`omit'" == "" {
 		
 		foreach g in 2 1 {
 			foreach e of local alledus {
@@ -500,9 +498,26 @@ use `base', clear
 			}	
 			local skillgroup = `skillgroup'+1	
 		}
-	}	
+	}
 	
-}
+	/*
+	* Impact of prices
+	if ("`foodprices'"!="") {
+	    
+		tempname _yinitial _yfood
+		
+		sum Yini`simyear' [w=`generate']
+		scalar `_yinitial' = r(mean)
+		
+		gen double foodadjust`simyear' = (( foodshare) * ${rfcpi_t`simyear'_sc`sc'}) + (( 1-foodshare ) * ${rocpi_t`simyear'_sc`sc'})	
+		replace Ysim_food`simyear' = Ysim_food`simyear' * (_ysim_ini`simyear'/_ysim_food`simyear')	
+		
+		sum Yini`simyear' [w=wgtsim`simyear']
+		scalar _ysim_food`simyear' = r(mean)
+		
+	}
+	*/
+
 end
 
 
