@@ -111,15 +111,19 @@ quietly	{
 			}
 		}
 		
-		if ("`targets'"!="" & "`industry'"=="" & "`industryshares'"=="" & 48 != rowsof(`targets') & 1 != colsof(`targets')) {
-			noi di " "
-			noi di in red "Target matrix needs to be 48 x 1."
-			exit
+		if ("`targets'"!="" & "`industry'"=="" & "`industryshares'"=="") {
+			if (48 != rowsof(`targets') & 1 != colsof(`targets')) {
+				noi di " "
+				noi di in red "Target matrix needs to be 48 x 1."
+				exit
+			}
 		}
-		if ("`targets'"!="" & 48 != rowsof(`targets') & 1 != colsof(`targets')) {
-			noi di " "
-			noi di in red "Targets matrix needs to be 48 x 1 (8 age groups X 2 genders x 3 education groups)."
-			exit
+		if ("`targets'"!="") {
+			if (48 != rowsof(`targets') & 1 != colsof(`targets')) {
+				noi di " "
+				noi di in red "Targets matrix needs to be 48 x 1 (8 age groups X 2 genders x 3 education groups)."
+				exit
+			}
 		}
 
 		* Options for updating labor income. Users provides them all or none.
