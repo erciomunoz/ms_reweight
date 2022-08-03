@@ -403,11 +403,11 @@ quietly {
 		
 		forval a = `iyear'/`tyear' {
 			matrix define const`a' = [ A`a' \ B`a' \ C`a' \ D`a' \ E`a' \ F`a' ]
-			matrix rownames const`a'= fs1a0010 fs1c1120 fs1a2130 fs1a3140 fs1a4150 fs1a5160 fs1a6170 fs1a70+ fs2a0010 fs2c1120 fs2a2130 fs2a3140 fs2a4150 fs2a5160 fs2a6170 fs2a70+ fs3a0010 fs3c1120 fs3a2130 fs3a3140 fs3a4150 fs3a5160 fs3a6170 fs3a70+ ms1a0010 ms1c1120 ms1a2130 ms1a3140 ms1a4150 ms1a5160 ms1a6170 ms1a70+ ms2a0010 ms2c1120 ms2a2130 ms2a3140 ms2a4150 ms2a5160 ms2a6170 ms2a70+ ms3a0010 ms3c1120 ms3a2130 ms3a3140 ms3a4150 ms3a5160 ms3a6170 ms3a70+
+			matrix rownames const`a'= fc1a0010 fc1c1120 fc1a2130 fc1a3140 fc1a4150 fc1a5160 fc1a6170 fc1a70+ fc2a0010 fc2c1120 fc2a2130 fc2a3140 fc2a4150 fc2a5160 fc2a6170 fc2a70+ fc3a0010 fc3c1120 fc3a2130 fc3a3140 fc3a4150 fc3a5160 fc3a6170 fc3a70+ mc1a0010 mc1c1120 mc1a2130 mc1a3140 mc1a4150 mc1a5160 mc1a6170 mc1a70+ mc2a0010 mc2c1120 mc2a2130 mc2a3140 mc2a4150 mc2a5160 mc2a6170 mc2a70+ mc3a0010 mc3c1120 mc3a2130 mc3a3140 mc3a4150 mc3a5160 mc3a6170 mc3a70+
 		}
 
 if ("`targets'" != "") matrix const`tyear' = `targets'
-if ("`targets'" != "") matrix rownames const`tyear'= fs1a0010 fs1c1120 fs1a2130 fs1a3140 fs1a4150 fs1a5160 fs1a6170 fs1a70+ fs2a0010 fs2c1120 fs2a2130 fs2a3140 fs2a4150 fs2a5160 fs2a6170 fs2a70+ fs3a0010 fs3c1120 fs3a2130 fs3a3140 fs3a4150 fs3a5160 fs3a6170 fs3a70+ ms1a0010 ms1c1120 ms1a2130 ms1a3140 ms1a4150 ms1a5160 ms1a6170 ms1a70+ ms2a0010 ms2c1120 ms2a2130 ms2a3140 ms2a4150 ms2a5160 ms2a6170 ms2a70+ ms3a0010 ms3c1120 ms3a2130 ms3a3140 ms3a4150 ms3a5160 ms3a6170 ms3a70+
+if ("`targets'" != "") matrix rownames const`tyear'= fc1a0010 fc1c1120 fc1a2130 fc1a3140 fc1a4150 fc1a5160 fc1a6170 fc1a70+ fc2a0010 fc2c1120 fc2a2130 fc2a3140 fc2a4150 fc2a5160 fc2a6170 fc2a70+ fc3a0010 fc3c1120 fc3a2130 fc3a3140 fc3a4150 fc3a5160 fc3a6170 fc3a70+ mc1a0010 mc1c1120 mc1a2130 mc1a3140 mc1a4150 mc1a5160 mc1a6170 mc1a70+ mc2a0010 mc2c1120 mc2a2130 mc2a3140 mc2a4150 mc2a5160 mc2a6170 mc2a70+ mc3a0010 mc3c1120 mc3a2130 mc3a3140 mc3a4150 mc3a5160 mc3a6170 mc3a70+
 }				
 	
 ********************************************************************************
