@@ -45,7 +45,7 @@ quietly	{
 				gen country_merge = "`country'"
 					collapse (sum) y*, by(country_merge)
 					
-					forval p = 2011/2100 {
+					forval p = 1991/2100 {
 						gen double y`p'1 = yf`p' + ym`p'
 					}
 				
@@ -81,14 +81,14 @@ quietly	{
 		levelsof `skill', local(levels)
 	
 		* Verifying that the survey year selected is within range
-		if `iyear' < 2011 | `iyear' > 2100 {
+		if `iyear' < 1991 | `iyear' > 2100 {
 			noi di " "
 			noi di in red "Survey year is out of range (2011-2100)"
 			exit
 		}		
 	
 		* Verifying that the target year selected is within range
-		if `tyear' < 2011 | `tyear' > 2100 {
+		if `tyear' < 1991 | `tyear' > 2100 {
 			noi di " "
 			noi di in red "Target year is out of range (1950-2100)"
 			exit
