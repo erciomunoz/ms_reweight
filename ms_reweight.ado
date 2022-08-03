@@ -440,7 +440,7 @@ if ("`targets'" != "") matrix rownames const`tyear'= fs1a0010 fs1c1120 fs1a2130 
 		foreach s of local levels {
 			forval i = 1/`nindustries' {
 				gen double i`i's`skillgroup' = (`skill' == `s' & `industry' == `i')
-				local iis`s' "`iis`s'' s`s'i`i'"  
+				local iis`skillgroup' "`iis`skillgroup'' s`skillgroup'i`i'"  
 			}	
 			local skillgroup = `skillgroup'+1	
 		}
