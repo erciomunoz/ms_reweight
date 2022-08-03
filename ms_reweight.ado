@@ -403,9 +403,11 @@ quietly {
 		
 		forval a = `iyear'/`tyear' {
 			matrix define const`a' = [ A`a' \ B`a' \ C`a' \ D`a' \ E`a' \ F`a' ]
+			matrix rownames const`a'= fs1a0010 fs1c1120 fs1a2130 fs1a3140 fs1a4150 fs1a5160 fs1a6170 fs1a70+ fs2a0010 fs2c1120 fs2a2130 fs2a3140 fs2a4150 fs2a5160 fs2a6170 fs2a70+ fs3a0010 fs3c1120 fs3a2130 fs3a3140 fs3a4150 fs3a5160 fs3a6170 fs3a70+ ms1a0010 ms1c1120 ms1a2130 ms1a3140 ms1a4150 ms1a5160 ms1a6170 ms1a70+ ms2a0010 ms2c1120 ms2a2130 ms2a3140 ms2a4150 ms2a5160 ms2a6170 ms2a70+ ms3a0010 ms3c1120 ms3a2130 ms3a3140 ms3a4150 ms3a5160 ms3a6170 ms3a70+
 		}
 
-if ("`targets'" != "") mat const`tyear' = `targets'
+if ("`targets'" != "") matrix const`tyear' = `targets'
+if ("`targets'" != "") matrix rownames const`tyear'= fs1a0010 fs1c1120 fs1a2130 fs1a3140 fs1a4150 fs1a5160 fs1a6170 fs1a70+ fs2a0010 fs2c1120 fs2a2130 fs2a3140 fs2a4150 fs2a5160 fs2a6170 fs2a70+ fs3a0010 fs3c1120 fs3a2130 fs3a3140 fs3a4150 fs3a5160 fs3a6170 fs3a70+ ms1a0010 ms1c1120 ms1a2130 ms1a3140 ms1a4150 ms1a5160 ms1a6170 ms1a70+ ms2a0010 ms2c1120 ms2a2130 ms2a3140 ms2a4150 ms2a5160 ms2a6170 ms2a70+ ms3a0010 ms3c1120 ms3a2130 ms3a3140 ms3a4150 ms3a5160 ms3a6170 ms3a70+
 }				
 	
 ********************************************************************************
@@ -438,11 +440,14 @@ if ("`targets'" != "") mat const`tyear' = `targets'
 		foreach s of local levels {
 			forval i = 1/`nindustries' {
 				gen double i`i's`skillgroup' = (`skill' == `s' & `industry' == `i')
+				local iis`s' "`iis`s'' s`s'i`i'"  
 			}	
 			local skillgroup = `skillgroup'+1	
 		}
-	
+			
 		forval s = 1/`nskills' {	
+			
+			matrix rownames `industryshares' = "`iis`s''"
 			matrix const`tyear' = const`tyear' \ `industryshares'[1...,`s']
 		}
 	}
