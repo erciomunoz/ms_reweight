@@ -447,7 +447,7 @@ if ("`targets'" != "") matrix rownames const`tyear'= fs1a0010 fs1c1120 fs1a2130 
 			
 		forval s = 1/`nskills' {	
 			
-			matrix rownames `industryshares' = "`iis`s''"
+			matrix rownames `industryshares' = `iis`s''
 			matrix const`tyear' = const`tyear' \ `industryshares'[1...,`s']
 		}
 	}
