@@ -83,14 +83,14 @@ quietly	{
 		* Verifying that the survey year selected is within range
 		if `iyear' < 1991 | `iyear' > 2100 {
 			noi di " "
-			noi di in red "Survey year is out of range (2011-2100)"
+			noi di in red "Survey year is out of range (1991-2100)"
 			exit
 		}		
 	
 		* Verifying that the target year selected is within range
 		if `tyear' < 1991 | `tyear' > 2100 {
 			noi di " "
-			noi di in red "Target year is out of range (1950-2100)"
+			noi di in red "Target year is out of range (1991-2100)"
 			exit
 		}	
 		
